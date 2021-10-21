@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
+import { Grid, Paper, Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { useState, useEffect } from 'react'
+import BookList from './BookList'
+import InputFields from './InputFields'
 
-function App() {
+const data = require('./mockdata.json')
+
+const App = () => {
+  const [books, setBooks] = useState(data)
+  const [selectedBook, setSelectedBook] = useState(null)
+
+  function SetCurrentBook(id) {
+    setSelectedBook(id)
+  }
+
+  useEffect(() => {
+    setBooks(data)
+  }, [])
+
+  useEffect(() => {
+    console.log(selectedBook)
+  }, [selectedBook])
+
+  var val = books.find((b) => b.id === selectedBook)
+  console.log(val)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ width: '100%', overflow: 'hidden' }}>
+      <div style={{ float: 'left' }}>
+        <Paper rounded='true'>
+          <BookList books={books} SetCurrentBook={setSelectedBook} />
+        </Paper>
+      </div>
+      <div style={{ float: 'left', paddingLeft: 200 }}>
+        <Paper>
+          <InputFields book={val} />
+        </Paper>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
