@@ -8,6 +8,7 @@ import RightColumn from './RightSide/RightColumn'
 import { AutoFixOffSharp } from '@mui/icons-material'
 import axios from 'axios'
 import { useMutation, useQuery } from 'react-query'
+import GetToken from './Client/GetToken'
 
 const data = require('./mockdata.json')
 
@@ -16,6 +17,9 @@ const App = () => {
   const [selectedBook, setSelectedBook] = useState(null)
   const [selectedBookId, setSelectedBookId] = useState(null)
   const [bookSelected, setBookSelected] = useState(false)
+  const tokenUrl = 'https://dev-wuhb2z2r.us.auth0.com/oauth/token'
+
+  require('dotenv').config()
 
   var token =
     'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlREMTl0VHZMT0Z4bmhXODVWNVp1ciJ9.eyJpc3MiOiJodHRwczovL2Rldi13dWhiMnoyci51cy5hdXRoMC5jb20vIiwic3ViIjoiWFB3WUJIUElOS1BLR3MyRzdrREQzZHFmd1JjZVdKdVRAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vYXV0aDAtand0LWF1dGhvcml6ZXIiLCJpYXQiOjE2MzQ3MjMwMzAsImV4cCI6MTYzNDgwOTQzMCwiYXpwIjoiWFB3WUJIUElOS1BLR3MyRzdrREQzZHFmd1JjZVdKdVQiLCJzY29wZSI6ImdldE5hbWVzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.LQQq8CTsPn-GlzAIE11u18siFKTG4kBW2g7fn2Va3fQRQ9rI8dm3EzXWutVjkGnLOcfOHmKnJZR39R0nO-fh2NC9H1ts2PkheYjOD2oOAytie2_9-WwC3xZM3hzo6adfuKzzr56ZpdRSVickbMxQ2YHpRjYQUYATQJ-BRmJo4gqQo42FTQETbsYmAt9zBFsS0nsBrgWmlBu667THLIcYTwQ3ZPMUen2AkTiWGdDvfwBguk70h1iMahfAPIygzk_e2q1OZQblnpX12YFOlvpXxNNck51VXE-6s-K2KR2H5bQ_jQUICCE1mWldNZrVWn8g3-OWqfp981ouEK1ENZCDJQ'
@@ -35,17 +39,15 @@ const App = () => {
   }, [selectedBookId, books])
 
   const mutation = useMutation((books) => {
+    var token = GetToken()
     return axios.get(
       'https://libraryapi.matiaslang.info/api/books',
       {
         headers: {
-          'Access-Control-Allow-Origin': 'true',
-          crossOriginIsolated: true,
           'Content-Type': 'application/json',
           //todo: this is temporary, have to modify so that the token is fetched for every request. Currently the token is valid for a day
           Authorization: `Bearer ${token}`,
         },
-        mode: 'no-cors',
       },
       books
     )
