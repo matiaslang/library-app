@@ -1,12 +1,18 @@
 import { Grid, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
 
-const InputFields = ({ book, focused }) => {
-  const [title, setTitle] = useState()
-  const [author, setAuthor] = useState()
-  const [description, setDescription] = useState()
-  const [id, setId] = useState()
-
+const InputFields = ({
+  book,
+  focused,
+  title,
+  setTitle,
+  author,
+  setAuthor,
+  description,
+  setDescription,
+  id,
+  setId,
+}) => {
   useEffect(() => {
     if (book != null) {
       setTitle(book.title)
@@ -25,11 +31,6 @@ const InputFields = ({ book, focused }) => {
     }
   }, [focused])
 
-  useEffect(() => {
-    console.log('OK; NYMMYÖ LATASIMMA')
-  }, [])
-
-  console.log('OK, TÄSSÄ KIRJA')
   return (
     <div>
       <Grid
@@ -51,7 +52,8 @@ const InputFields = ({ book, focused }) => {
             value={title}
             multiline={true}
             focused={focused}
-            onChange={(e) => setTitle(e.value)}
+            required
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Grid>
         <Grid item xs={6} spacing={3}>
@@ -64,7 +66,8 @@ const InputFields = ({ book, focused }) => {
             value={author}
             multiline={true}
             focused={focused}
-            onChange={(e) => setAuthor(e.value)}
+            required
+            onChange={(e) => setAuthor(e.target.value)}
           />
         </Grid>
       </Grid>
@@ -88,7 +91,8 @@ const InputFields = ({ book, focused }) => {
             multiline={true}
             minRows='3'
             focused={focused}
-            onChange={(e) => setDescription(e.value)}
+            required
+            onChange={(e) => setDescription(e.target.value)}
           />
         </Grid>
         <Grid item xs={6} spacing={3}>
@@ -101,7 +105,7 @@ const InputFields = ({ book, focused }) => {
             value={id}
             multiline={true}
             focused={focused}
-            onChange={(e) => setId(e.value)}
+            onChange={(e) => setId(e.target.value)}
           />
         </Grid>
       </Grid>
