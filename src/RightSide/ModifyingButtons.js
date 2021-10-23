@@ -14,13 +14,15 @@ const ModifyingButtons = ({
   console.log('MUTATE NAPPULAN TYKÖNÄ')
   console.log(mutation)
   const handleSave = () => {
-    SaveNew(title, author, description, id).then(
-      mutation.mutation.mutation.mutate()
-    )
+    SaveNew(title, author, description, id)
+      .then(mutation.mutation.mutation.reset())
+      .then(mutation.mutation.mutation.mutate())
   }
 
   const handleDelete = () => {
-    Delete(id).then(mutation.mutation.mutation.mutate())
+    Delete(id)
+      .then(mutation.mutation.mutation.reset())
+      .then(mutation.mutation.mutation.mutate())
   }
 
   return (
