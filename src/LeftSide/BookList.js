@@ -17,7 +17,7 @@ const BookList = ({ books, SetCurrentBook }) => {
           {books.map((book) => (
             <ListItem divider='true'>
               <ListItemButton onClick={() => HandleClick(book.id)}>
-                <ListItemText primary={book.title} />
+                <ListItemText primary={book.title + ' - ' + book.author} />
               </ListItemButton>
             </ListItem>
           ))}

@@ -9,9 +9,6 @@ const RightColumn = ({ book, focused, setFocused, mutation }) => {
   const [description, setDescription] = useState()
   const [id, setId] = useState()
 
-  console.log('OK; KATOTAAMPA MUTAATIOTA')
-  console.log(mutation)
-
   return (
     <Paper>
       <InputFields

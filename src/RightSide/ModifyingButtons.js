@@ -11,8 +11,6 @@ const ModifyingButtons = ({
   id,
   mutation,
 }) => {
-  console.log('MUTATE NAPPULAN TYKÖNÄ')
-  console.log(mutation)
   const handleSave = () => {
     SaveNew(title, author, description, id)
       .then(mutation.mutation.mutation.reset())
