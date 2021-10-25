@@ -16,8 +16,11 @@ const App = () => {
   const [selectedBook, setSelectedBook] = useState(null)
   const [selectedBookId, setSelectedBookId] = useState(null)
   const [bookSelected, setBookSelected] = useState(false)
-  const [retry, setRetry] = useState(true)
-  const [token, setToken] = useState(null)
+
+  const tokenUrl = 'https://dev-wuhb2z2r.us.auth0.com/oauth/token'
+
+  require('dotenv').config()
+
 
   const Token = async () => {
     var newToken = null
@@ -40,15 +43,13 @@ const App = () => {
   }, [selectedBookId, books])
 
   const mutation = useMutation((books) => {
+    var token = GetToken()
     return axios.get(
       url,
       {
         headers: {
-          'Access-Control-Allow-Origin': 'true',
-          crossOriginIsolated: true,
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
       },
       books
     )
