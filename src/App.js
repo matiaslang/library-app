@@ -16,11 +16,11 @@ const App = () => {
   const [selectedBook, setSelectedBook] = useState(null)
   const [selectedBookId, setSelectedBookId] = useState(null)
   const [bookSelected, setBookSelected] = useState(false)
+  const [token, setToken] = useState(false)
 
   const tokenUrl = 'https://dev-wuhb2z2r.us.auth0.com/oauth/token'
 
   require('dotenv').config()
-
 
   const Token = async () => {
     var newToken = null
