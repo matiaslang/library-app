@@ -26,6 +26,6 @@ TODOs:
 
 - [ ] Sometimes application does not refresh with new information. This needs to be investigated
 
-- [ ] Proper await for api requests
+  - [ ] Coldstarting lambda takes a few seconds -> this call needs to be avaited and the status needs to be shown to user
 
   
