@@ -6,6 +6,7 @@ import {
   Paper,
 } from '@mui/material'
 
+//List of the books on the left side of the screen. Just present title and author of every book found
 const BookList = ({ books, SetCurrentBook }) => {
   const HandleClick = (id) => {
     SetCurrentBook(id)
