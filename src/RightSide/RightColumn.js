@@ -3,7 +3,9 @@ import { Grid, Paper, Box } from '@mui/material'
 import ModifyingButtons from './ModifyingButtons'
 import { useEffect, useState } from 'react'
 
+//base object for right side. Shows fields for inputs / data of books on top, and buttons to modify those below
 const RightColumn = ({ book, focused, setFocused, mutation }) => {
+  //states for information about books
   const [title, setTitle] = useState()
   const [author, setAuthor] = useState()
   const [description, setDescription] = useState()

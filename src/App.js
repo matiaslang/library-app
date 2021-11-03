@@ -22,6 +22,7 @@ const App = () => {
 
   require('dotenv').config()
 
+  //todo: token is not used currently, will be implemented
   const Token = async () => {
     var newToken = null
     if (token === null) {
@@ -33,8 +34,8 @@ const App = () => {
 
   const url = 'https://libraryapi.matiaslang.info/api/books'
 
+  //Select a book based on ID. This is then showcased on right column if one is chosen
   useEffect(() => {
-    //console.log(selectedBook)
     var val = books.find((b) => b.id === selectedBookId)
     setSelectedBook(val)
     if (val != null) {
@@ -55,12 +56,14 @@ const App = () => {
     )
   })
 
+  //fetch new books on reload from db
   useEffect(() => {
     mutation.mutate()
   }, [])
 
   useEffect(() => {
     if (mutation.isSuccess) {
+      //set books as a state on successful request / response
       setBooks(mutation.data.data)
       //mutation.reset()
     }

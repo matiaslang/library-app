@@ -1,6 +1,7 @@
 import { Grid, TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
 
+// field which show data of selected books, or empty if no book is selected. In case of none selected, a new book can be saved by typing in information
 const InputFields = ({
   book,
   focused,
